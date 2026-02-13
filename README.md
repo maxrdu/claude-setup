@@ -1,6 +1,6 @@
 # claude-setup
 
-Custom skills, commands, and agents for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Managed via symlinks so your personal configurations coexist cleanly with third-party additions.
+Custom skills and documentation for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Managed via symlinks so your personal configurations coexist cleanly with third-party additions.
 
 ## Quick Start
 
@@ -10,7 +10,7 @@ cd ~/claude-setup
 make install
 ```
 
-This creates individual symlinks in `~/.claude/` for each skill, command, agent, etc. Third-party items installed directly into `~/.claude/` are left untouched.
+This creates individual symlinks in `~/.claude/` for each skill and doc set. Third-party items installed directly into `~/.claude/` are left untouched.
 
 ## Repository Structure
 
@@ -20,18 +20,9 @@ claude-setup/
 ├── CLAUDE.md         # Root Claude Code project configuration
 ├── skills/           # Specialized capability packages
 │   └── <name>/
-│       ├── SKILL.md  # Skill definition
-│       ├── references/  # Supporting docs (optional)
-│       └── scripts/     # Helper scripts (optional)
-├── commands/         # Slash command shortcuts (/command-name)
-│   └── <name>/
-│       └── COMMAND.md
-├── agents/           # Specialized agent configurations
-│   └── <name>/
-│       └── AGENT.md
-├── docs/             # Reference documentation
-├── scripts/          # Standalone utility scripts
-└── output-styles/    # Output formatting configurations
+│       ├── SKILL.md     # Skill definition
+│       └── references/  # Supporting docs (optional)
+└── docs/             # Reference documentation
 ```
 
 ## Commands
@@ -46,7 +37,7 @@ claude-setup/
 
 ## How It Works
 
-Unlike replacing entire directories, this approach creates **individual symlinks** for each skill, agent, command, etc. inside `~/.claude/`:
+Unlike replacing entire directories, this approach creates **individual symlinks** for each skill, doc set, etc. inside `~/.claude/`:
 
 ```
 ~/.claude/skills/
@@ -76,41 +67,9 @@ Unlike replacing entire directories, this approach creates **individual symlinks
    Description of what this skill does...
    ```
 
-3. Optionally add `references/` and `scripts/` subdirectories for supporting materials.
+3. Optionally add a `references/` subdirectory for supporting materials.
 
 4. Run `make install` to symlink it into `~/.claude/skills/`.
-
-## Creating a New Command
-
-1. Create a directory under `commands/`:
-   ```bash
-   mkdir -p commands/my-command
-   ```
-
-2. Add a `COMMAND.md`:
-   ```markdown
-   # /my-command
-
-   Description of what the slash command does...
-   ```
-
-3. Run `make install`.
-
-## Creating a New Agent
-
-1. Create a directory under `agents/`:
-   ```bash
-   mkdir -p agents/my-agent
-   ```
-
-2. Add an `AGENT.md`:
-   ```markdown
-   # My Agent
-
-   Specialized agent configuration...
-   ```
-
-3. Run `make install`.
 
 ## Uninstalling
 
@@ -118,4 +77,4 @@ Unlike replacing entire directories, this approach creates **individual symlinks
 make uninstall
 ```
 
-This only removes symlinks that point back to this repository. Any third-party skills, commands, or agents you've added directly into `~/.claude/` are preserved.
+This only removes symlinks that point back to this repository. Any third-party skills or docs you've added directly into `~/.claude/` are preserved.

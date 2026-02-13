@@ -1,7 +1,7 @@
 # Claude Code Configuration Manager
 #
 # Manages symlinks from this repository into ~/.claude/
-# Creates individual symlinks for each skill, agent, command, etc.
+# Creates individual symlinks for each skill, doc set, etc.
 # so third-party additions can coexist without polluting this repo.
 #
 # Usage:
@@ -18,7 +18,7 @@ SRC_DIR  := $(shell pwd)
 DEST_DIR := $(HOME)/.claude
 
 # Managed top-level directories (each item inside gets its own symlink)
-MANAGED_DIRS := skills agents commands docs scripts output-styles
+MANAGED_DIRS := skills docs
 
 # Individual files to symlink at the root of ~/.claude/
 MANAGED_FILES := CLAUDE.md
@@ -36,7 +36,7 @@ help: ## Show available targets
 	@echo "  make help       Show this help"
 	@echo ""
 	@echo "Symlinks are created per-item (not per-directory) so that"
-	@echo "third-party skills, agents, etc. can coexist alongside yours."
+	@echo "third-party skills and docs can coexist alongside yours."
 
 dirs: ## Create target directories if needed
 	@for dir in $(MANAGED_DIRS); do \
